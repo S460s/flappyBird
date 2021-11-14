@@ -8,8 +8,17 @@ const scoreElm = document.querySelector('[data-score]');
 
 const isMobile = () => window.innerWidth <= 640;
 
-const bird = new Bird(birdElm);
-const pipeController = new PipeController(scoreElm);
+let bird;
+let pipeController;
+
+// Fix ssettings for mobile.
+if (isMobile()) {
+	pipeController = new PipeController(scoreElm, 180, 2500, 0.2, 60);
+	bird = new Bird(birdElm, 0.3);
+} else {
+	pipeController = new PipeController(scoreElm);
+	bird = new Bird(birdElm);
+}
 
 const addListeners = () => {
 	if (isMobile()) {
