@@ -21,12 +21,15 @@ class Bird {
 
 	setUp(isMobile) {
 		this._top = window.innerHeight / 2;
+
+		// Remove them here so there is only 1 eventlistener if user changes width midgame.
+		document.removeEventListener('click', this.handleJump);
+		document.removeEventListener('keydown', this.handleJump);
 		if (isMobile) {
-			document.removeEventListener('click', this.handleJump);
 			document.addEventListener('click', this.handleJump);
 		} else {
-			document.removeEventListener('keydown', this.handleJump);
 			document.addEventListener('keydown', this.handleJump);
+			document.addEventListener('click', this.handleJump);
 		}
 	}
 

@@ -6,16 +6,20 @@ const title = document.querySelector('[data-title]');
 const subTitle = document.querySelector('[data-subtitle]');
 const scoreElm = document.querySelector('[data-score]');
 
+const isMobile = () => window.innerWidth <= 640;
+
 const bird = new Bird(birdElm);
 const pipeController = new PipeController(scoreElm);
-
-const isMobile = () => window.innerWidth <= 640;
 
 const addListeners = () => {
 	if (isMobile()) {
 		document.addEventListener('click', handleStart, { once: true });
+		title.firstChild.textContent = 'Click to start';
 	} else {
 		document.addEventListener('keypress', handleStart, { once: true });
+		document.addEventListener('click', handleStart, { once: true });
+
+		title.firstChild.textContent = 'Press any key to start or click';
 	}
 };
 
@@ -37,7 +41,13 @@ function updateLoop(time) {
 	window.requestAnimationFrame(updateLoop);
 }
 
-function handleStart() {
+function handleStart(e) {
+	if (e.type === 'click') {
+		document.removeEventListener('keypress', handleStart);
+	} else {
+		document.removeEventListener('click', handleStart);
+	}
+
 	lastTime = null;
 	title.classList.add('hide');
 	window.requestAnimationFrame(updateLoop);
