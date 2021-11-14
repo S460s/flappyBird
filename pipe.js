@@ -65,7 +65,6 @@ export default class PipeController {
 		}
 
 		this.pipes.forEach((pipe) => {
-			console.log(pipe.left);
 			if (pipe.left + this.PIPE_WIDTH < 0) {
 				this.passedPipes++;
 				this._displayScore();

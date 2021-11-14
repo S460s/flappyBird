@@ -10,7 +10,6 @@ class Bird {
 
 	updateBird(delta) {
 		this.top = this._timeSinceLastJump < this.JUMP_DURATION ? -delta : delta;
-		console.log(this.top);
 		this.birdElm.style.setProperty('--bird-top', this.top);
 		this._timeSinceLastJump += delta;
 	}
