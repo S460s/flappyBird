@@ -9,11 +9,21 @@
 		<title>Flappy</title>
 	</head>
 	<body>
-		<div class="settings" data-settings>
+		<div class="hide" data-settings>
 			<label>
 				Bird Color:
-				<input type="color" />
+				<input id="birdColor" class="colorInput" type="color" />
 			</label>
+			<label>
+				Pipe Color:
+				<input id="pipeColor" class="colorInput" type="color" />
+			</label>
+			<label>
+				Background Color:
+				<input id="backgroundColor" class="colorInput" type="color" />
+			</label>
+
+			<button data-save>save</button>
 		</div>
 		<div class="titleDiv">
 			<h1 class="title hide" data-score>Score</h1>

@@ -1,5 +1,6 @@
 import Bird from './bird.js';
 import PipeController from './pipe.js';
+import { setUpSettings } from './settings.js';
 
 const birdElm = document.querySelector('[data-bird]');
 const title = document.querySelector('[data-title]');
@@ -7,6 +8,8 @@ const subTitle = document.querySelector('[data-subtitle]');
 const scoreElm = document.querySelector('[data-score]');
 
 const isMobile = () => window.innerWidth <= 640;
+
+setUpSettings();
 
 let bird;
 let pipeController;
@@ -27,7 +30,7 @@ const addListeners = () => {
 	} else {
 		document.addEventListener('keypress', handleStart);
 		title.addEventListener('click', handleStart, { once: true });
-		title.firstChild.textContent = 'Play!';
+		title.firstChild.textContent = 'Play! (ctrl+m to toggle menu)';
 	}
 };
 
