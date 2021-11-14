@@ -25,10 +25,10 @@ const addListeners = () => {
 		document.addEventListener('click', handleStart, { once: true });
 		title.firstChild.textContent = 'Click to start';
 	} else {
-		document.addEventListener('keypress', handleStart, { once: true });
+		document.addEventListener('keypress', handleStart);
 		document.addEventListener('click', handleStart, { once: true });
 
-		title.firstChild.textContent = 'Press any key to start or click';
+		title.firstChild.textContent = 'Press space or click to start';
 	}
 };
 
@@ -53,9 +53,11 @@ function updateLoop(time) {
 function handleStart(e) {
 	if (e.type === 'click') {
 		document.removeEventListener('keypress', handleStart);
-	} else {
+	} else if (e.code === 'Space') {
+		// remove both event listeners as the keypress isn't {once: true} because it waits for space.
 		document.removeEventListener('click', handleStart);
-	}
+		document.removeEventListener('keypress', handleStart);
+	} else return;
 
 	lastTime = null;
 	title.classList.add('hide');
