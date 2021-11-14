@@ -28,11 +28,13 @@ export default class PipeController {
 	passedPipes = 0;
 
 	constructor(
+		scoreElm,
 		HOLE_HEIGHT = 225,
 		PIPE_INTERVAL = 2000,
 		PIPE_SPEED = 0.35,
 		PIPE_WIDTH = 120
 	) {
+		this.scoreElm = scoreElm;
 		this.HOLE_HEIGHT = HOLE_HEIGHT;
 		this.PIPE_INTERVAL = PIPE_INTERVAL;
 		this.PIPE_SPEED = PIPE_SPEED;
@@ -66,10 +68,16 @@ export default class PipeController {
 			console.log(pipe.left);
 			if (pipe.left + this.PIPE_WIDTH < 0) {
 				this.passedPipes++;
+				this._displayScore();
 				return this._removePipe(pipe);
 			}
 			pipe.left = pipe.left - delta * this.PIPE_SPEED;
 		});
+	}
+
+	_displayScore() {
+		this.scoreElm.classList.remove('hide');
+		this.scoreElm.textContent = this.passedPipes;
 	}
 
 	_removePipe(pipe) {

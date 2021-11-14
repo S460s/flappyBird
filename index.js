@@ -4,9 +4,10 @@ import PipeController from './pipe.js';
 const birdElm = document.querySelector('[data-bird]');
 const title = document.querySelector('[data-title]');
 const subTitle = document.querySelector('[data-subtitle]');
+const scoreElm = document.querySelector('[data-score]');
 
 const bird = new Bird(birdElm);
-const pipeController = new PipeController();
+const pipeController = new PipeController(scoreElm);
 
 let lastTime = null;
 function updateLoop(time) {
@@ -38,6 +39,7 @@ function handleLoose() {
 	setTimeout(() => {
 		title.classList.remove('hide');
 		subTitle.classList.remove('hide');
+		scoreElm.classList.add('hide');
 		subTitle.textContent = `${pipeController.passedPipes} pipes!`;
 		document.addEventListener('keypress', handleStart, { once: true });
 	}, 100);
