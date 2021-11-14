@@ -73,3 +73,11 @@ body {
 		100vh - calc(var(--hole-top) * 1px) + calc(var(--hole-height) * 1px)
 	);
 }
+
+/*Settings*/
+
+.settings {
+	border: 3px solid red;
+	width: 30vw;
+	height: 50vh;
+}

@@ -27,7 +27,7 @@ const addListeners = () => {
 	} else {
 		document.addEventListener('keypress', handleStart);
 		title.addEventListener('click', handleStart, { once: true });
-		title.firstChild.textContent = 'Press space or click this text to start';
+		title.firstChild.textContent = 'Play!';
 	}
 };
 
@@ -69,7 +69,8 @@ function handleLoose() {
 	setTimeout(() => {
 		title.classList.remove('hide');
 		subTitle.classList.remove('hide');
-		subTitle.textContent = `${pipeController.passedPipes} pipes!`;
+		scoreElm.classList.add('hide');
+		subTitle.textContent = `Score: ${pipeController.passedPipes}.`;
 		addListeners();
 	}, 100);
 }
