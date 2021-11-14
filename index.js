@@ -22,13 +22,12 @@ if (isMobile()) {
 
 const addListeners = () => {
 	if (isMobile()) {
-		document.addEventListener('click', handleStart, { once: true });
+		title.addEventListener('click', handleStart, { once: true });
 		title.firstChild.textContent = 'Click to start';
 	} else {
 		document.addEventListener('keypress', handleStart);
-		document.addEventListener('click', handleStart, { once: true });
-
-		title.firstChild.textContent = 'Press space or click to start';
+		title.addEventListener('click', handleStart, { once: true });
+		title.firstChild.textContent = 'Press space or click this text to start';
 	}
 };
 
@@ -70,7 +69,6 @@ function handleLoose() {
 	setTimeout(() => {
 		title.classList.remove('hide');
 		subTitle.classList.remove('hide');
-		scoreElm.classList.add('hide');
 		subTitle.textContent = `${pipeController.passedPipes} pipes!`;
 		addListeners();
 	}, 100);
