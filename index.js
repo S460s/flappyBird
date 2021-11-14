@@ -9,6 +9,16 @@ const scoreElm = document.querySelector('[data-score]');
 const bird = new Bird(birdElm);
 const pipeController = new PipeController(scoreElm);
 
+const isMobile = () => window.innerWidth <= 640;
+
+const addListeners = () => {
+	if (isMobile()) {
+		document.addEventListener('click', handleStart, { once: true });
+	} else {
+		document.addEventListener('keypress', handleStart, { once: true });
+	}
+};
+
 let lastTime = null;
 function updateLoop(time) {
 	if (lastTime === null) {
@@ -31,7 +41,7 @@ function handleStart() {
 	lastTime = null;
 	title.classList.add('hide');
 	window.requestAnimationFrame(updateLoop);
-	bird.setUp();
+	bird.setUp(isMobile());
 	pipeController.setUp();
 }
 
@@ -41,7 +51,7 @@ function handleLoose() {
 		subTitle.classList.remove('hide');
 		scoreElm.classList.add('hide');
 		subTitle.textContent = `${pipeController.passedPipes} pipes!`;
-		document.addEventListener('keypress', handleStart, { once: true });
+		addListeners();
 	}, 100);
 }
 
@@ -54,4 +64,4 @@ function isCollision(coords1, coords2) {
 	);
 }
 
-document.addEventListener('keypress', handleStart, { once: true });
+addListeners();

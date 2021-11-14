@@ -16,14 +16,18 @@ class Bird {
 	}
 
 	handleJump = (e) => {
-		if (e.code !== 'Space') return;
-		this._timeSinceLastJump = 0;
+		if (e.code === 'Space' || e.type === 'click') this._timeSinceLastJump = 0;
 	};
 
-	setUp() {
+	setUp(isMobile) {
 		this._top = window.innerHeight / 2;
-		document.removeEventListener('keydown', this.handleJump);
-		document.addEventListener('keydown', this.handleJump);
+		if (isMobile) {
+			document.removeEventListener('click', this.handleJump);
+			document.addEventListener('click', this.handleJump);
+		} else {
+			document.removeEventListener('keydown', this.handleJump);
+			document.addEventListener('keydown', this.handleJump);
+		}
 	}
 
 	isLoosing() {
