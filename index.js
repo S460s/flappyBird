@@ -9,7 +9,7 @@ const scoreElm = document.querySelector('[data-score]');
 
 const isMobile = () => window.innerWidth <= 640;
 
-setUpSettings();
+setUpSettings(isMobile());
 
 let bird;
 let pipeController;

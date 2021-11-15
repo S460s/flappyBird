@@ -32,8 +32,21 @@ const saveColors = (e) => {
 	settingsElm.classList.toggle('settings');
 };
 
-function setUpSettings() {
-	document.addEventListener('keydown', toggleMenu);
+const mobileMenu = () => {
+	const button = document.createElement('button');
+	button.textContent = 'Menu';
+	button.classList.add('btn');
+	button.addEventListener('click', () => {
+		settingsElm.classList.toggle('settings');
+	});
+
+	document.body.append(button);
+};
+
+function setUpSettings(isMobile) {
+	if (isMobile) mobileMenu();
+	else document.addEventListener('keydown', toggleMenu);
+
 	saveBtn.addEventListener('click', saveColors);
 	renderColors();
 }

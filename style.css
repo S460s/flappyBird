@@ -88,9 +88,17 @@ body {
 	flex-direction: column;
 	position: absolute;
 	z-index: 2;
+	margin: 10px;
 }
 
 .btn {
-	padding: 25px;
+	padding: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	cursor: pointer;
+	border: 2px solid rgba(46, 42, 42, 0.068);
+	margin: 10px;
+
 	position: absolute;
+	z-index: 1;
 }
